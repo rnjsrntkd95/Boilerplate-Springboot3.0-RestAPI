@@ -1,3 +1,6 @@
 spring:
   jpa:
     open-in-view: false
+
+jwt:
+  sign-key: Boilerplate-sign-key
