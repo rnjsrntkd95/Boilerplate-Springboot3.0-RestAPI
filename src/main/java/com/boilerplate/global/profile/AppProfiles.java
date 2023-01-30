@@ -1,4 +1,4 @@
-package com.boilerplate.global.security.profile;
+package com.boilerplate.global.profile;
 
 import org.springframework.core.env.Environment;
 
