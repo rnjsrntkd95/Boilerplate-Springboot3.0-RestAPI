@@ -1,4 +1,4 @@
-package com.boilerplate.global.security.swagger;
+package com.boilerplate.global.swagger;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

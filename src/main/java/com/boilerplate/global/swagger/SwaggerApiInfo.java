@@ -1,4 +1,4 @@
-package com.boilerplate.global.security.swagger;
+package com.boilerplate.global.swagger;
 
 import java.util.List;
 
