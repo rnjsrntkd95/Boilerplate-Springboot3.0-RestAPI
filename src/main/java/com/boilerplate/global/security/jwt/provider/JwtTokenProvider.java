@@ -21,7 +21,7 @@ import static com.boilerplate.global.security.jwt.JwtClaimKey.USERNAME;
 public class JwtTokenProvider {
 
     private static final String JWT = "JWT";
-    private static final String ISSUER = "Jainwon ATS Builder";
+    private static final String ISSUER = "Boilerplate issuer";
     private static final String HEADER_TYP = "typ";
     private static final String HEADER_ALGORITHM = "alg";
 

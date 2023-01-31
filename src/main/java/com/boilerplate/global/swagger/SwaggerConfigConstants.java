@@ -13,5 +13,5 @@ public class SwaggerConfigConstants {
     public static final String JWT = "Jwt";
     public static final String BEARER_SCHEME = "Bearer";
 
-    public static final String BUILDER_GROUP = "BOILERPLATE-API";
+    public static final String BOILERPLATE_GROUP = "BOILERPLATE-API";
 }

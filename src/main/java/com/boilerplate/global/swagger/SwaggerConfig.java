@@ -33,11 +33,11 @@ public class SwaggerConfig {
     }
 
     @Bean
-    public GroupedOpenApi builderApi() {
-        String[] builderApiPath = SwaggerApiInfo.getApiPathArray(SwaggerApiInfo.BOILERPLATE_API);
+    public GroupedOpenApi boilerplateApi() {
+        String[] boilerplateApiPath = SwaggerApiInfo.getApiPathArray(SwaggerApiInfo.BOILERPLATE_API);
         return GroupedOpenApi.builder()
-                .group(SwaggerConfigConstants.BUILDER_GROUP)
-                .pathsToMatch(builderApiPath)
+                .group(SwaggerConfigConstants.BOILERPLATE_GROUP)
+                .pathsToMatch(boilerplateApiPath)
                 .build();
     }
 
