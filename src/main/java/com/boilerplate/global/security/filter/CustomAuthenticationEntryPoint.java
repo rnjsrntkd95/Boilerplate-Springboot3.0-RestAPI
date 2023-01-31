@@ -1,7 +1,7 @@
 package com.boilerplate.global.security.filter;
 
 import com.boilerplate.global.exception.ErrorRs;
-import com.boilerplate.global.exception.jwt.FailedJwtAuthenticationException;
+import com.boilerplate.global.exception.jwt.FailedAuthenticationException;
 import com.boilerplate.global.security.jwt.JwtExceptionCode;
 import com.boilerplate.global.util.JsonUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import static com.boilerplate.global.security.jwt.JwtExceptionCode.INVALID_SIGNA
 import static com.boilerplate.global.security.jwt.JwtExceptionCode.UNSUPPORTED_TOKEN;
 import static io.jsonwebtoken.lang.Strings.UTF_8;
 
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)
@@ -43,7 +43,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         } else if (UNSUPPORTED_TOKEN.equals(exceptionCode)) {
             return ErrorRs.of(exceptionCode.getCode(), exceptionCode.getMessage());
         } else {
-            return ErrorRs.ofException(new FailedJwtAuthenticationException());
+            return ErrorRs.ofException(new FailedAuthenticationException());
         }
     }
 }
