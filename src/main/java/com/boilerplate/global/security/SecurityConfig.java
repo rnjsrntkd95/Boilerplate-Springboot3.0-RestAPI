@@ -2,8 +2,9 @@ package com.boilerplate.global.security;
 
 import com.boilerplate.global.profile.AppProfiles;
 import com.boilerplate.global.security.filter.CustomAccessDeniedHandler;
-import com.boilerplate.global.security.filter.JwtAuthenticationEntryPoint;
+import com.boilerplate.global.security.filter.CustomAuthenticationEntryPoint;
 import com.boilerplate.global.security.filter.JwtAuthenticationFilter;
+import com.boilerplate.global.security.jwt.provider.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -25,23 +27,29 @@ public class SecurityConfig {
 
     private final Environment environment;
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationProvider jwtAuthenticationProvider;
 
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable()
+                .httpBasic().disable()
                 .formLogin().disable()
                 .logout().disable()
+                .csrf().disable()
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/test").permitAll() // test controller
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(createJwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
-                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
                 .accessDeniedHandler(new CustomAccessDeniedHandler())
                 .and()
                 .build();
+    }
+
+    private JwtAuthenticationFilter createJwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter(jwtAuthenticationProvider);
     }
 
     @Bean
