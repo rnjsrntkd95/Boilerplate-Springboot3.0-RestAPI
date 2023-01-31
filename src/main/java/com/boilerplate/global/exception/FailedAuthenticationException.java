@@ -1,4 +1,4 @@
-package com.boilerplate.global.exception.jwt;
+package com.boilerplate.global.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

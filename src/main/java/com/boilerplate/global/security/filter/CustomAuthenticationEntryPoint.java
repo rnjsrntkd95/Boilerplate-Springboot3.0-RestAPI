@@ -1,7 +1,7 @@
 package com.boilerplate.global.security.filter;
 
 import com.boilerplate.global.exception.ErrorRs;
-import com.boilerplate.global.exception.jwt.FailedAuthenticationException;
+import com.boilerplate.global.exception.FailedAuthenticationException;
 import com.boilerplate.global.security.jwt.JwtExceptionCode;
 import com.boilerplate.global.util.JsonUtils;
 import jakarta.servlet.http.HttpServletRequest;
