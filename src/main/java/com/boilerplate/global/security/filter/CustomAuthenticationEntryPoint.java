@@ -16,7 +16,6 @@ import static com.boilerplate.global.security.filter.JwtAuthenticationFilter.JWT
 import static com.boilerplate.global.security.jwt.JwtExceptionCode.EXPIRED_TOKEN;
 import static com.boilerplate.global.security.jwt.JwtExceptionCode.INVALID_SIGNATURE;
 import static com.boilerplate.global.security.jwt.JwtExceptionCode.UNSUPPORTED_TOKEN;
-import static io.jsonwebtoken.lang.Strings.UTF_8;
 
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
@@ -31,7 +30,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     private void setExceptionResponse(HttpServletResponse response, ErrorRs errorRs) throws IOException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON.toString());
-        response.setCharacterEncoding(UTF_8.toString());
+        response.setCharacterEncoding("UTF-8");
         response.getWriter().write(JsonUtils.toJson(errorRs));
     }
 

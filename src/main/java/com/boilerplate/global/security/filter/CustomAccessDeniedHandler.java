@@ -10,8 +10,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 import java.io.IOException;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
@@ -21,7 +19,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.setContentType(MediaType.APPLICATION_JSON.toString());
-        response.setCharacterEncoding(UTF_8.toString());
+        response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
     }
 }
