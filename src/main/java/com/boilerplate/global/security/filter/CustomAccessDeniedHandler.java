@@ -1,7 +1,7 @@
 package com.boilerplate.global.security.filter;
 
 import com.boilerplate.global.exception.ErrorRs;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.boilerplate.global.util.JsonUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;
@@ -17,8 +17,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
         ErrorRs errorRs = ErrorRs.ofException(accessDeniedException);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(errorRs);
+        String json = JsonUtils.toJson(errorRs);
 
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.setContentType(MediaType.APPLICATION_JSON.toString());
